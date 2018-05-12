@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NewsPush.DataAccess\NewsPush.DataAccess.csproj" />
+    <ProjectReference Include="..\NewsPush.Entities\NewsPush.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
