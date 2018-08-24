@@ -10,35 +10,13 @@ using NewsPush.Entities;
 namespace NewsPush.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Categories/{IdCategories}/News")]
+    [Route("api/News")]
     public class NewsController : Controller
     {
         private readonly IDaNews daNews;
         public NewsController(IDaNews daNews)
         {
             this.daNews = daNews;
-        }
-
-        [HttpGet("All")]
-        public IActionResult GetAll()
-        {
-            var res = daNews.GetAll();
-            if (res.Count > 0)
-            {
-                return Ok(res);
-            }
-            return NoContent();
-        }
-
-        [HttpGet]
-        public IActionResult GetAllByCompanies(int IdCategories)
-        {
-            var res = daNews.GetAllByCategories(IdCategories);
-            if (res.Count > 0)
-            {
-                return Ok(res);
-            }
-            return NoContent();
         }
 
         [HttpGet("{id}", Name = "CreateNews")]
@@ -50,6 +28,28 @@ namespace NewsPush.Api.Controllers
                 return Ok(res);
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var res = daNews.GetAll();
+            if (res.Count > 0)
+            {
+                return Ok(res);
+            }
+            return NoContent();
+        }
+        
+        [HttpGet("Categories/{IdCategories}")]
+        public IActionResult GetAllByCategory(int IdCategories)
+        {
+            var res = daNews.GetAllByCategories(IdCategories);
+            if (res.Count > 0)
+            {
+                return Ok(res);
+            }
+            return NoContent();
         }
 
         [HttpPost]

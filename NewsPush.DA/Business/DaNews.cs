@@ -19,7 +19,7 @@ namespace NewsPush.DA.Business
     public class DaNews : IDaNews
     {
         /// <summary>
-        /// Crear
+        /// Create a News 
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace NewsPush.DA.Business
                 using (var db = new DataAccess.Models.NewsDBContext())
                 {
                     var obj = new DataAccess.Models.News();
-                    obj.Tittle = e.Tittle;
+                    obj.Title = e.Tittle;
                     obj.Description = e.Description;
 
                     db.News.Add(obj);
@@ -47,7 +47,7 @@ namespace NewsPush.DA.Business
         }
 
         /// <summary>
-        /// Eliminar
+        /// Detele a news by ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace NewsPush.DA.Business
         }
 
         /// <summary>
-        /// Obtener por ID
+        /// Get a New by ID 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace NewsPush.DA.Business
                     if (q != null)
                     {
                         res.IdCategory = q.IdCategory;
-                        res.Tittle = q.Tittle;
+                        res.Tittle = q.Title;
                         res.Description = q.Description;
                     }
                 }                    
@@ -103,7 +103,7 @@ namespace NewsPush.DA.Business
         }
 
         /// <summary>
-        /// 
+        /// Get all News
         /// </summary>
         /// <returns></returns>
         public List<Enews> GetAll()
@@ -119,7 +119,7 @@ namespace NewsPush.DA.Business
                         foreach (var i in query)
                         {
                             Enews e = new Enews();
-                            e.Tittle = i.Tittle;
+                            e.Tittle = i.Title;
                             e.Description = i.Description;
                             res.Add(e);
                         }
@@ -134,7 +134,7 @@ namespace NewsPush.DA.Business
         }
 
         /// <summary>
-        /// 
+        /// Get by IdCategory
         /// </summary>
         /// <returns></returns>
         public List<Enews> GetAllByCategories(int id)
@@ -150,7 +150,7 @@ namespace NewsPush.DA.Business
                         foreach (var i in query)
                         {
                             Enews e = new Enews();
-                            e.Tittle = i.Tittle;
+                            e.Tittle = i.Title;
                             e.Description = i.Description;
                             res.Add(e);
                         }
@@ -164,6 +164,11 @@ namespace NewsPush.DA.Business
             return res;
         }
 
+        /// <summary>
+        /// Update a New
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public bool Update(Enews e)
         {
             bool res = false;
@@ -174,7 +179,7 @@ namespace NewsPush.DA.Business
                     var query = (from x in db.News where x.IdNews == e.IdNews select x).FirstOrDefault();
                     if (query != null)
                     {
-                        query.Tittle = e.Tittle;
+                        query.Title = e.Tittle;
                         query.Description = e.Description;
                         db.News.Update(query);
                         db.SaveChanges();

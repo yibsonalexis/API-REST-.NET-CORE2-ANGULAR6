@@ -56,9 +56,9 @@ namespace NewsPush.DataAccess.Models
 
                 entity.Property(e => e.IdCategory).HasColumnName("idCategory");
 
-                entity.Property(e => e.Tittle)
+                entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasColumnName("tittle")
+                    .HasColumnName("title")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

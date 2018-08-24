@@ -121,7 +121,6 @@ namespace NewsPush.DA.Business
                     db.Categories.Update(query);
                     db.SaveChanges();
                     res = true;
-
                 }
             }
             catch (Exception)
